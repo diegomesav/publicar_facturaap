@@ -5,20 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería de Imágenes</title>
     <style>
-        body {
+               body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
-        .galeria img {
-            width: 200px;
-            height: auto;
-            margin: 10px;
-            border: 2px solid #ddd;
-            border-radius: 4px;
+        h1 {
+            text-align: center;
+            margin: 20px 0;
         }
         .galeria {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center; /* Centrar las imágenes */
+            padding: 10px;
+        }
+        .galeria div {
+            width: 220px; /* Ancho fijo para el contenedor de cada imagen */
+            margin: 10px; /* Espacio entre las imágenes */
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* Para evitar que el contenido se salga del contenedor */
+        }
+        .galeria img {
+            max-width: 100%; /* Ajustar al contenedor */
+            height: auto; /* Mantener la proporción de aspecto */
+            display: block; /* Para evitar espacios en la parte inferior */
         }
     </style>
 </head>
@@ -325,10 +339,12 @@
 
         // Recorrer la lista de imágenes y generar las etiquetas <img>
         imagenes.forEach(function(imagen) {
+            const divElement = document.createElement('div'); // Crear un contenedor para cada imagen
             const imgElement = document.createElement('img');
             imgElement.src = imagen; // Establecer la ruta de la imagen
             imgElement.alt = 'Imagen'; // Texto alternativo
-            galeria.appendChild(imgElement); // Añadir la imagen al contenedor
+            divElement.appendChild(imgElement); // Añadir la imagen al contenedor
+            galeria.appendChild(divElement); // Añadir el contenedor al galería
         });
     </script>
 </body>
