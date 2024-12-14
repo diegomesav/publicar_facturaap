@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+        .galeria div {
+            width: 220px;
+            margin: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .galeria img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galería de Imágenes</h1>
+    <div class="galeria" id="galeria"></div>
+
+    <script>
+        // Lista de imágenes dentro de la carpeta "imagenes"
+        const imagenes = [
+                        'DSC_0161.jpg',
+            'DSC_0162.jpg',
+            'DSC_0163.jpg',
+            'DSC_0164.jpg',
+            'DSC_0165.jpg',
+            'DSC_0166.jpg',
+            'DSC_0167.jpg',
+            'DSC_0168.jpg',
+            'DSC_0169.jpg',
+            'DSC_0170.jpg',
+            'DSC_0171.jpg',
+            'DSC_0172.jpg',
+            'DSC_0173.jpg',
+            'DSC_0174.jpg',
+            'DSC_0175.jpg',
+            'DSC_0176.jpg',
+            'DSC_0177.jpg',
+            'DSC_0179.jpg',
+            'DSC_0180.jpg',
+            'DSC_0181.jpg',
+            'DSC_0182.jpg',
+            'DSC_0183.jpg',
+            'DSC_0184.jpg',
+            'DSC_0185.jpg',
+            'DSC_0188.jpg',
+            'DSC_0191.jpg',
+            'DSC_0192.jpg',
+            'DSC_0193.jpg',
+            'DSC_0194.jpg',
+            'DSC_0195.jpg',
+            'DSC_0196.jpg',
+            'DSC_0197.jpg',
+            'DSC_0198.jpg',
+            'DSC_0199.jpg',
+            'DSC_0203.jpg',
+            'DSC_0204.jpg',
+            'DSC_0205.jpg',
+            'DSC_0208.jpg',
+            'DSC_0209.jpg',
+            'DSC_0210.jpg',
+            'DSC_0211.jpg',
+            'DSC_0212.jpg',
+            'DSC_0213.jpg',
+            'DSC_0214.jpg',
+            'DSC_0215.jpg',
+            'DSC_0216.jpg',
+            'DSC_0217.jpg',
+            'DSC_0218.jpg',
+            'DSC_0220.jpg',
+            'DSC_0221.jpg',
+            'DSC_0222.jpg',
+            'DSC_0223.jpg',
+            'DSC_0224.jpg',
+            'DSC_0225.jpg',
+            'DSC_0226.jpg',
+            'DSC_0227.jpg',
+            'DSC_0228.jpg',
+            'DSC_0230.jpg',
+            'DSC_0232.jpg',
+            'DSC_0234.jpg',
+            'DSC_0235.jpg',
+            'DSC_0236.jpg',
+            'DSC_0237.jpg',
+            'DSC_0239.jpg',
+            'DSC_0240.jpg',
+            'DSC_0241.jpg',
+            'DSC_0243.jpg',
+            'DSC_0245.jpg',
+            'DSC_0246.jpg',
+            'DSC_0248.jpg',
+            'DSC_0249.jpg',
+            'DSC_0250.jpg',
+            'DSC_0251.jpg',
+            'DSC_0252.jpg',
+            'DSC_0253.jpg',
+            'DSC_0254.jpg',
+            'DSC_0255.jpg',
+            'DSC_0256.jpg',
+            'DSC_0257.jpg',
+            'DSC_0258.jpg',
+            'DSC_0259.jpg',
+            'DSC_0260.jpg',
+            'DSC_0261.jpg',
+            'DSC_0262.jpg',
+            'DSC_0263.jpg',
+            'DSC_0264.jpg',
+            'DSC_0265.jpg',
+            'DSC_0266.jpg',
+            'DSC_0267.jpg',
+            'DSC_0268.jpg',
+            'DSC_0269.jpg',
+            'DSC_0270.jpg',
+            'DSC_0271.jpg',
+            'DSC_0272.jpg',
+            'DSC_0273.jpg',
+            'DSC_0274.jpg',
+            'DSC_0275.jpg',
+            'DSC_0276.jpg',
+            'DSC_0277.jpg',
+            'DSC_0278.jpg',
+            'DSC_0279.jpg',
+            'DSC_0280.jpg',
+            'DSC_0281.jpg',
+            'DSC_0282.jpg',
+            'DSC_0283.jpg',
+            'DSC_0284.jpg',
+            'DSC_0285.jpg',
+            'DSC_0286.jpg',
+            'DSC_0287.jpg',
+            'DSC_0288.jpg',
+            'DSC_0289.jpg',
+            'DSC_0290.jpg',
+            'DSC_0291.jpg',
+            'DSC_0292.jpg',
+            'DSC_0293.jpg',
+            'DSC_0294.jpg',
+            'DSC_0295.jpg',
+            'DSC_0296.jpg',
+            'DSC_0297.jpg',
+            'DSC_0298.jpg',
+            'DSC_0299.jpg',
+            'DSC_0300.jpg',
+            'DSC_0301.jpg',
+            'DSC_0302.jpg',
+            'DSC_0303.jpg',
+            'DSC_0304.jpg',
+            'DSC_0305.jpg',
+            'DSC_0306.jpg',
+            'DSC_0307.jpg',
+            'DSC_0308.jpg',
+            'DSC_0309.jpg',
+            'DSC_0310.jpg',
+            'DSC_0311.jpg',
+            'DSC_0312.jpg',
+            'DSC_0313.jpg',
+            'DSC_0314.jpg',
+            'DSC_0315.jpg',
+            'DSC_0316.jpg',
+            'DSC_0317.jpg',
+            'DSC_0318.jpg',
+
+            // Añade más imágenes según sea necesario
+        ];
+
+        // Seleccionar el contenedor de la galería
+        const galeria = document.getElementById('galeria');
+
+        // Recorrer la lista de imágenes y generar las etiquetas <img>
+        imagenes.forEach(function(imagen) {
+            const divElement = document.createElement('div'); // Contenedor para cada imagen
+            const imgElement = document.createElement('img');
+            imgElement.setAttribute('data-src', imagen); // Ruta de imagen diferida
+            imgElement.alt = 'Imagen';
+            imgElement.classList.add('lazy'); // Añadir clase para identificarlas
+            divElement.appendChild(imgElement);
+            galeria.appendChild(divElement);
+        });
+
+        // Implementar lazy loading con Intersection Observer
+        const lazyImages = document.querySelectorAll('.lazy');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.getAttribute('data-src');
+                    img.removeAttribute('data-src'); // Limpieza de atributo
+                    observer.unobserve(img); // Dejar de observar esta imagen
+                }
+            });
+        });
+
+        lazyImages.forEach(img => observer.observe(img));
+    </script>
+</body>
+</html>
