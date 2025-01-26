@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+        .galeria div {
+            width: 220px;
+            margin: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .galeria img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galería de Imágenes</h1>
+    <div class="galeria" id="galeria"></div>
+
+    <script>
+        // Lista de imágenes dentro de la carpeta "imagenes"
+        const imagenes = [
+            'IMG_3483.jpg',
+            'IMG_3799.jpg',
+            'MG_2690.jpg',
+            'MG_2694.jpg',
+            'MG_2695.jpg',
+            'MG_2697.jpg',
+            'MG_2698.jpg',
+            'MG_2701.jpg',
+            'MG_2704.jpg',
+            'MG_2705.jpg',
+            'MG_2706.jpg',
+            'MG_2708.jpg',
+            'MG_2712.jpg',
+            'MG_2714.jpg',
+            'MG_2716.jpg',
+            'MG_2717.jpg',
+            'MG_2718.jpg',
+            'MG_2720.jpg',
+            'MG_2726.jpg',
+            'MG_2727.jpg',
+            'MG_2730.jpg',
+            'MG_2732.jpg',
+            'MG_2732a.jpg',
+            'MG_2733.jpg',
+            'MG_2746.jpg',
+            'MG_2747.jpg',
+            'MG_2748.jpg',
+            'MG_2750.jpg',
+            'MG_2751.jpg',
+            'MG_2754.jpg',
+            'MG_2756.jpg',
+            'MG_2758.jpg',
+            'MG_2762.jpg',
+            'MG_2769.jpg',
+            'MG_2779.jpg',
+            'MG_2780.jpg',
+            'MG_2781.jpg',
+            'MG_2784.jpg',
+            'MG_2785.jpg',
+            'MG_2789.jpg',
+            'MG_2792.jpg',
+            'MG_2795.jpg',
+            'MG_2796.jpg',
+            'MG_2799.jpg',
+            'MG_2811.jpg',
+            'MG_2813.jpg',
+            'MG_2815.jpg',
+            'MG_2819.jpg',
+            'MG_2829.jpg',
+            'MG_2830.jpg',
+            'MG_2835.jpg',
+            'MG_2836.jpg',
+            'MG_2837.jpg',
+            'MG_2845.jpg',
+            'MG_2853.jpg',
+            'MG_2854.jpg',
+            'MG_2859.jpg',
+            'MG_2860.jpg',
+            'MG_2862.jpg',
+            'MG_2863.jpg',
+            'MG_2864.jpg',
+            'MG_2867.jpg',
+            'MG_2868.jpg',
+            'MG_2869.jpg',
+            'MG_2870.jpg',
+            'MG_2871.jpg',
+            'MG_2872.jpg',
+            'MG_2873.jpg',
+            'MG_2874.jpg',
+            'MG_2875.jpg',
+            'MG_2876.jpg',
+            'MG_2879.jpg',
+            'MG_2881.jpg',
+            'MG_2883.jpg',
+            'MG_2885.jpg',
+            'MG_2886.jpg',
+            'MG_2887.jpg',
+            'MG_2912.jpg',
+            'MG_2913.jpg',
+            'MG_2914.jpg',
+            'MG_2916.jpg',
+            'MG_2917.jpg',
+            'MG_2918.jpg',
+            'MG_2920.jpg',
+            'MG_2921.jpg',
+            'MG_2927_1.jpg',
+            'MG_2929_1.jpg',
+            'MG_2930.jpg',
+            'MG_2932.jpg',
+            'MG_2933.jpg',
+            'MG_2976.jpg',
+            'MG_2982.jpg',
+            'MG_2998.jpg',
+            'MG_3000.jpg',
+            'MG_3031.jpg',
+            'MG_3032.jpg',
+            'MG_3034.jpg',
+            'MG_3036.jpg',
+            'MG_3037.jpg',
+            'MG_3039.jpg',
+            'MG_3043.jpg',
+            'MG_3044.jpg',
+            'MG_3046.jpg',
+            'MG_3047.jpg',
+            'MG_3051.jpg',
+            'MG_3053.jpg',
+            'MG_3059.jpg',
+            'MG_3060.jpg',
+            'MG_3061.jpg',
+            'MG_3062.jpg',
+            'MG_3063.jpg',
+            'MG_3065.jpg',
+            'MG_3066.jpg',
+            'MG_3071.jpg',
+            'MG_3072.jpg',
+            'MG_3111.jpg',
+            'MG_3111a.jpg',
+            'MG_3114.jpg',
+            'MG_3118.jpg',
+            'MG_3119.jpg',
+            'MG_3127.jpg',
+            'MG_3152.jpg',
+            'MG_3154.jpg',
+            'MG_3156.jpg',
+            'MG_3158.jpg',
+            'MG_3159.jpg',
+            'MG_3159_1.jpg',
+            'MG_3161.jpg',
+            'MG_3163.jpg',
+            'MG_3164.jpg',
+            'MG_3165.jpg',
+            'MG_3181.jpg',
+            'MG_3183.jpg',
+            'MG_3219.jpg',
+            'MG_3221.jpg',
+            'MG_3224.jpg',
+            'MG_3227.jpg',
+            'MG_3229.jpg',
+            'MG_3232.jpg',
+            'MG_3236.jpg',
+            'MG_3254.jpg',
+            'MG_3258.jpg',
+            'MG_3287.jpg',
+            'MG_3290.jpg',
+            'MG_3292.jpg',
+            'MG_3297.jpg',
+            'MG_3300.jpg',
+            'MG_3325_1.jpg',
+            'MG_3333.jpg',
+            'MG_3335.jpg',
+            'MG_3343.jpg',
+            'MG_3347.jpg',
+            'MG_3366.jpg',
+            'MG_3371.jpg',
+            'MG_3378.jpg',
+            'MG_3381.jpg',
+            'MG_3384.jpg',
+            'MG_3386.jpg',
+            'MG_3389.jpg',
+            'MG_3390.jpg',
+            'MG_3395.jpg',
+            'MG_3396.jpg',
+            'MG_3401.jpg',
+            'MG_3402.jpg',
+            'MG_3403.jpg',
+            'MG_3403_1.jpg',
+            'MG_3404.jpg',
+            'MG_3406.jpg',
+            'MG_3407.jpg',
+            'MG_3408.jpg',
+            'MG_3409.jpg',
+            'MG_3411.jpg',
+            'MG_3412.jpg',
+            'MG_3413.jpg',
+            'MG_3414.jpg',
+            'MG_3415.jpg',
+            'MG_3416.jpg',
+            'MG_3417.jpg',
+            'MG_3418.jpg',
+            'MG_3419.jpg',
+            'MG_3420.jpg',
+            'MG_3423.jpg',
+            'MG_3424.jpg',
+            'MG_3430.jpg',
+            'MG_3440.jpg',
+            'MG_3443.jpg',
+            'MG_3445.jpg',
+            'MG_3449.jpg',
+            'MG_3451.jpg',
+            'MG_3457.jpg',
+            'MG_3470.jpg',
+            'MG_3474.jpg',
+            'MG_3476.jpg',
+            'MG_3477.jpg',
+            'MG_3481.jpg',
+            'MG_3485.jpg',
+            'MG_3487.jpg',
+            'MG_3489.jpg',
+            'MG_3490.jpg',
+            'MG_3491.jpg',
+            'MG_3492.jpg',
+            'MG_3498.jpg',
+            'MG_3503.jpg',
+            'MG_3504.jpg',
+            'MG_3510.jpg',
+            'MG_3511.jpg',
+            'MG_3512.jpg',
+            'MG_3516.jpg',
+            'MG_3518.jpg',
+            'MG_3519.jpg',
+            'MG_3520.jpg',
+            'MG_3521.jpg',
+            'MG_3523.jpg',
+            'MG_3524.jpg',
+            'MG_3529.jpg',
+            'MG_3541.jpg',
+            'MG_3547.jpg',
+            'MG_3552.jpg',
+            'MG_3555.jpg',
+            'MG_3556.jpg',
+            'MG_3559.jpg',
+            'MG_3572.jpg',
+            'MG_3578.jpg',
+            'MG_3580.jpg',
+            'MG_3583.jpg',
+            'MG_3594.jpg',
+            'MG_3598.jpg',
+            'MG_3616.jpg',
+            'MG_3622.jpg',
+            'MG_3626.jpg',
+            'MG_3629.jpg',
+            'MG_3631.jpg',
+            'MG_3633.jpg',
+            'MG_3634.jpg',
+            'MG_3635.jpg',
+            'MG_3639.jpg',
+            'MG_3641.jpg',
+            'MG_3642.jpg',
+            'MG_3643.jpg',
+            'MG_3644.jpg',
+            'MG_3646.jpg',
+            'MG_3647.jpg',
+            'MG_3648.jpg',
+            'MG_3649.jpg',
+            'MG_3650.jpg',
+            'MG_3651.jpg',
+            'MG_3652.jpg',
+            'MG_3653.jpg',
+            'MG_3656.jpg',
+            'MG_3660.jpg',
+            'MG_3662.jpg',
+            'MG_3665.jpg',
+            'MG_3665_1.jpg',
+            'MG_3668.jpg',
+            'MG_3669.jpg',
+            'MG_3670.jpg',
+            'MG_3671.jpg',
+            'MG_3672.jpg',
+            'MG_3674.jpg',
+            'MG_3675.jpg',
+            'MG_3676.jpg',
+            'MG_3677.jpg',
+            'MG_3678.jpg',
+            'MG_3679.jpg',
+            'MG_3680.jpg',
+            'MG_3681.jpg',
+            'MG_3683.jpg',
+            'MG_3688.jpg',
+            'MG_3692.jpg',
+            'MG_3694.jpg',
+            'MG_3696.jpg',
+            'MG_3698.jpg',
+            'MG_3701.jpg',
+            'MG_3704.jpg',
+            'MG_3706.jpg',
+            'MG_3710.jpg',
+            'MG_3711.jpg',
+            'MG_3713_1.jpg',
+            'MG_3715.jpg',
+            'MG_3721.jpg',
+            'MG_3726.jpg',
+            'MG_3727.jpg',
+            'MG_3728_1.jpg',
+            'MG_3729.jpg',
+            'MG_3730.jpg',
+            'MG_3733.jpg',
+            'MG_3735.jpg',
+            'MG_3737.jpg',
+            'MG_3739.jpg',
+            'MG_3741.jpg',
+            'MG_3742_1.jpg',
+            'MG_3744.jpg',
+            'MG_3747.jpg',
+            'MG_3751.jpg',
+            'MG_3754.jpg',
+            'MG_3758.jpg',
+            'MG_3759.jpg',
+            'MG_3760.jpg',
+            'MG_3761.jpg',
+            'MG_3762.jpg',
+            'MG_3763.jpg',
+            'MG_3764.jpg',
+            'MG_3765.jpg',
+            'MG_3766.jpg',
+            'MG_3768.jpg',
+            'MG_3770.jpg',
+            'MG_3772.jpg',
+            'MG_3776.jpg',
+            'MG_3778.jpg',
+            'MG_3779.jpg',
+            'MG_3782.jpg',
+            'MG_3784.jpg',
+            'MG_3789.jpg',
+            'MG_3807.jpg',
+            'MG_3809.jpg',
+            'MG_3810.jpg',
+
+
+            // Añade más imágenes según sea necesario
+        ];
+
+        // Seleccionar el contenedor de la galería
+        const galeria = document.getElementById('galeria');
+
+        // Recorrer la lista de imágenes y generar las etiquetas <img>
+        imagenes.forEach(function(imagen) {
+            const divElement = document.createElement('div'); // Contenedor para cada imagen
+            const imgElement = document.createElement('img');
+            imgElement.setAttribute('data-src', imagen); // Ruta de imagen diferida
+            imgElement.alt = 'Imagen';
+            imgElement.classList.add('lazy'); // Añadir clase para identificarlas
+            divElement.appendChild(imgElement);
+            galeria.appendChild(divElement);
+        });
+
+        // Implementar lazy loading con Intersection Observer
+        const lazyImages = document.querySelectorAll('.lazy');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.getAttribute('data-src');
+                    img.removeAttribute('data-src'); // Limpieza de atributo
+                    observer.unobserve(img); // Dejar de observar esta imagen
+                }
+            });
+        });
+
+        lazyImages.forEach(img => observer.observe(img));
+    </script>
+</body>
+</html>
