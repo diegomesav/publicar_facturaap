@@ -5,7 +5,7 @@ import pandas as pd
 
 
 # Ruta de la carpeta que deseas listar
-ruta_carpeta = "Steven"
+ruta_carpeta = "evelyn"
 
 
 
@@ -35,6 +35,7 @@ archivos = [archivo for archivo in archivos if os.path.isfile(os.path.join(ruta_
 df_archivos = pd.DataFrame(archivos, columns=["Nombre del archivo"])
 
 # Exportar el DataFrame a un archivo Excel
+df_archivos["archivo_commillas"] = "'" + df_archivos["Nombre del archivo"] + "',"
 ruta_salida = "archivos_listados.xlsx"
 df_archivos.to_excel(ruta_salida, index=False)
 
