@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+        .galeria div {
+            width: 220px;
+            margin: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .galeria img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galería de Imágenes</h1>
+    <div class="galeria" id="galeria"></div>
+
+    <script>
+        // Lista de imágenes dentro de la carpeta "imagenes"
+        const imagenes = [
+            // Añade más imágenes según sea necesario
+            'DSC_0465.jpg',
+            'DSC_0466.jpg',
+            'DSC_0467.jpg',
+            'DSC_0468.jpg',
+            'DSC_0469.jpg',
+            'DSC_0471.jpg',
+            'DSC_0472.jpg',
+            'DSC_0473.jpg',
+            'DSC_0474.jpg',
+            'DSC_0475.jpg',
+            'DSC_0476.jpg',
+            'DSC_0479.jpg',
+            'DSC_0482.jpg',
+            'DSC_0483.jpg',
+            'DSC_0486.jpg',
+            'DSC_0491.jpg',
+            'DSC_0492.jpg',
+            'DSC_0494.jpg',
+            'DSC_0495.jpg',
+            'DSC_0497.jpg',
+            'DSC_0498.jpg',
+            'DSC_0499.jpg',
+            'DSC_0500.jpg',
+            'DSC_0501.jpg',
+            'DSC_0502.jpg',
+            'DSC_0503.jpg',
+            'DSC_0505.jpg',
+            'DSC_0506.jpg',
+            'DSC_0507.jpg',
+            'DSC_0508.jpg',
+            'DSC_0509.jpg',
+            'DSC_0510.jpg',
+            'DSC_0511.jpg',
+            'DSC_0512.jpg',
+            'DSC_0513.jpg',
+            'DSC_0514.jpg',
+            'DSC_0515.jpg',
+            'DSC_0518.jpg',
+            'DSC_0519.jpg',
+            'DSC_0520.jpg',
+            'DSC_0521.jpg',
+            'DSC_0522.jpg',
+            'DSC_0523.jpg',
+            'DSC_0524.jpg',
+            'DSC_0525.jpg',
+            'DSC_0526.jpg',
+            'DSC_0527.jpg',
+            'DSC_0529.jpg',
+            'DSC_0531.jpg',
+            'DSC_0532.jpg',
+            'DSC_0533.jpg',
+            'DSC_0534.jpg',
+            'DSC_0535.jpg',
+            'DSC_0536.jpg',
+            'DSC_0538.jpg',
+            'DSC_0539.jpg',
+            'DSC_0542.jpg',
+            'DSC_0543.jpg',
+            'DSC_0545.jpg',
+            'DSC_0548.jpg',
+            'DSC_0551.jpg',
+            'DSC_0552.jpg',
+            'DSC_0555.jpg',
+            'DSC_0557.jpg',
+            'DSC_0558.jpg',
+            'DSC_0559.jpg',
+            'DSC_0561.jpg',
+            'DSC_0562.jpg',
+            'DSC_0563.jpg',
+            'DSC_0565.jpg',
+            'DSC_0566.jpg',
+            'DSC_0567.jpg',
+            'DSC_0568.jpg',
+            'DSC_0569.jpg',
+            'DSC_0570.jpg',
+            'DSC_0572.jpg',
+            'DSC_0573.jpg',
+            'DSC_0574.jpg',
+            'DSC_0575.jpg',
+            'DSC_0576.jpg',
+            'DSC_0578.jpg',
+            'DSC_0580.jpg',
+            'DSC_0582.jpg',
+            'DSC_0583.jpg',
+            'DSC_0584.jpg',
+            'DSC_0591.jpg',
+            'DSC_0592.jpg',
+            'DSC_0593.jpg',
+            'DSC_0595.jpg',
+            'DSC_0601.jpg',
+            'DSC_0602.jpg',
+            'DSC_0603.jpg',
+            'DSC_0605.jpg',
+            'DSC_0606.jpg',
+            'DSC_0608.jpg',
+            'DSC_0611.jpg',
+            'DSC_0614.jpg',
+            'DSC_0615.jpg',
+            'DSC_0618.jpg',
+            'DSC_0619.jpg',
+            'DSC_0620.jpg',
+            'DSC_0621.jpg',
+            'DSC_0622.jpg',
+            'DSC_0623.jpg',
+            'DSC_0626.jpg',
+            'DSC_0628.jpg',
+            'DSC_0629.jpg',
+            'DSC_0631.jpg',
+            'DSC_0632.jpg',
+            'DSC_0633.jpg',
+            'DSC_0638.jpg',
+            'DSC_0639.jpg',
+            'DSC_0640.jpg',
+            'DSC_0641.jpg',
+            'DSC_0642.jpg',
+            'DSC_0646.jpg',
+            'DSC_0647.jpg',
+            'DSC_0648.jpg',
+            'DSC_0649.jpg',
+            'DSC_0650.jpg',
+            'DSC_0652.jpg',
+            'DSC_0653.jpg',
+            'DSC_0654.jpg',
+            'DSC_0655.jpg',
+            'DSC_0656.jpg',
+            'DSC_0657.jpg',
+            'DSC_0658.jpg',
+            'DSC_0662.jpg',
+            'DSC_0664.jpg',
+            'DSC_0665.jpg',
+            'DSC_0666.jpg',
+            'DSC_0667.jpg',
+            'DSC_0668.jpg',
+            'DSC_0671.jpg',
+            'DSC_0672.jpg',
+            'DSC_0673.jpg',
+            'DSC_0677.jpg',
+            'DSC_0679.jpg',
+            'DSC_0680.jpg',
+            'DSC_0681.jpg',
+            'DSC_0682.jpg',
+            'DSC_0683.jpg',
+            'DSC_0684.jpg',
+            'DSC_0685.jpg',
+            'DSC_0686.jpg',
+            'DSC_0688.jpg',
+            'DSC_0691.jpg',
+            'DSC_0692.jpg',
+            'DSC_0693.jpg',
+            'DSC_0694.jpg',
+            'DSC_0695.jpg',
+            'DSC_0697.jpg'
+
+        ];
+
+        // Seleccionar el contenedor de la galería
+        const galeria = document.getElementById('galeria');
+
+        // Recorrer la lista de imágenes y generar las etiquetas <img>
+        imagenes.forEach(function(imagen) {
+            const divElement = document.createElement('div'); // Contenedor para cada imagen
+            const imgElement = document.createElement('img');
+            imgElement.setAttribute('data-src', imagen); // Ruta de imagen diferida
+            imgElement.alt = 'Imagen';
+            imgElement.classList.add('lazy'); // Añadir clase para identificarlas
+            divElement.appendChild(imgElement);
+            galeria.appendChild(divElement);
+        });
+
+        // Implementar lazy loading con Intersection Observer
+        const lazyImages = document.querySelectorAll('.lazy');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.getAttribute('data-src');
+                    img.removeAttribute('data-src'); // Limpieza de atributo
+                    observer.unobserve(img); // Dejar de observar esta imagen
+                }
+            });
+        });
+
+        lazyImages.forEach(img => observer.observe(img));
+    </script>
+</body>
+</html>
