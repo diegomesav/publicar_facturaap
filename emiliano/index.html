@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+        .galeria div {
+            width: 220px;
+            margin: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .galeria img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galería de Imágenes</h1>
+    <div class="galeria" id="galeria"></div>
+
+    <script>
+        // Lista de imágenes dentro de la carpeta "imagenes"
+        const imagenes = [
+// Añade más imágenes según sea necesario
+            'DSC_0004.jpg',
+            'DSC_0005.jpg',
+            'DSC_0006.jpg',
+            'DSC_0016.jpg',
+            'DSC_0017.jpg',
+            'DSC_0018.jpg',
+            'DSC_0019.jpg',
+            'DSC_0020.jpg',
+            'DSC_0021.jpg',
+            'DSC_0022.jpg',
+            'DSC_0023.jpg',
+            'DSC_0024.jpg',
+            'DSC_0025.jpg',
+            'DSC_0026.jpg',
+            'DSC_0067.jpg',
+            'DSC_0068.jpg',
+            'DSC_0069.jpg',
+            'DSC_0070.jpg',
+            'DSC_0075.jpg',
+            'DSC_0076.jpg',
+            'DSC_0077.jpg',
+            'DSC_0091.jpg',
+            'DSC_0092.jpg',
+            'DSC_0093.jpg',
+            'DSC_0094.jpg',
+            'DSC_0095.jpg',
+            'DSC_0096.jpg',
+            'DSC_0132.jpg',
+            'DSC_0133.jpg',
+            'DSC_0135.jpg',
+            'DSC_0136.jpg',
+            'DSC_0195.jpg',
+            'DSC_0197.jpg',
+            'DSC_0198.jpg',
+            'DSC_0201.jpg',
+            'DSC_0202.jpg',
+            'DSC_0208.jpg',
+            'DSC_0209.jpg',
+            'DSC_0212.jpg',
+            'DSC_0215.jpg',
+            'DSC_0222.jpg',
+            'DSC_0223.jpg',
+            'DSC_0225.jpg',
+            'DSC_0228.jpg',
+            'DSC_0229.jpg',
+            'DSC_0230.jpg',
+            'DSC_0231.jpg',
+            'DSC_0232.jpg',
+            'DSC_0233.jpg',
+            'DSC_0234.jpg',
+            'DSC_0237.jpg',
+            'DSC_0238.jpg',
+            'DSC_0241.jpg',
+            'DSC_0242.jpg',
+            'DSC_0243.jpg',
+            'DSC_0244.jpg',
+            'DSC_0245.jpg'
+
+
+        ];
+
+        // Seleccionar el contenedor de la galería
+        const galeria = document.getElementById('galeria');
+
+        // Recorrer la lista de imágenes y generar las etiquetas <img>
+        imagenes.forEach(function(imagen) {
+            const divElement = document.createElement('div'); // Contenedor para cada imagen
+            const imgElement = document.createElement('img');
+            imgElement.setAttribute('data-src', imagen); // Ruta de imagen diferida
+            imgElement.alt = 'Imagen';
+            imgElement.classList.add('lazy'); // Añadir clase para identificarlas
+            divElement.appendChild(imgElement);
+            galeria.appendChild(divElement);
+        });
+
+        // Implementar lazy loading con Intersection Observer
+        const lazyImages = document.querySelectorAll('.lazy');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.getAttribute('data-src');
+                    img.removeAttribute('data-src'); // Limpieza de atributo
+                    observer.unobserve(img); // Dejar de observar esta imagen
+                }
+            });
+        });
+
+        lazyImages.forEach(img => observer.observe(img));
+    </script>
+</body>
+</html>
