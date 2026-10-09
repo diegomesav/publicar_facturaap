@@ -5,7 +5,7 @@ import pandas as pd
 
 
 # Ruta de la carpeta que deseas listar
-ruta_carpeta = "bautizo_selena"
+ruta_carpeta = "bautizo_alan"
 
 
 
